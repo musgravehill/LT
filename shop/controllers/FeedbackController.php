@@ -77,10 +77,17 @@ class FeedbackController extends Controller {
     }
 
     public function actionCr() {
+        $model = new \app\models\FormFeedbackCr();
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->cr()) {
+            Yii::$app->session->addFlash('success', 'Спасибо!');
+            return $this->redirect(Url::to(['feedback/cr',]));
+        }
 
+        $items = \app\models\Feedback::find()->orderby(['id' => SORT_DESC])->limit(10)->all();
 
         return $this->render('cr', [
-                    'user' => $user,
+                    'model' => $model,
+                    'items' => $items,
         ]);
     }
 

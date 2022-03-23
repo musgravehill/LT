@@ -31,16 +31,14 @@ AppAsset::register($this);
         <?php $this->beginBody() ?>
         <?= $this->render('_top_nav') ?>        
         <main class="container">
-            <div class="bg-light p-5">
+            <div class="p-1">
                 <div class="row">
                     <?php foreach (Yii::$app->session->getAllFlashes() as $key => $messages) : ?>
                         <?php foreach ($messages as $message) : ?>
                             <div class="col">
-                                <div class="m-1 alert alert-<?= $key ?> alert-dismissible fade show" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                <div class="m-1 alert alert-<?= $key ?> alert-dismissible fade show" role="alert">                                    
                                     <?= $message ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                             </div>
                         <?php endforeach; ?>

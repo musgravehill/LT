@@ -32,7 +32,7 @@ class Feedback extends \yii\db\ActiveRecord
             [['email', 'phone', 'username', 'dt_create'], 'required'],
             [['dt_create'], 'safe'],
             [['email', 'username'], 'string', 'max' => 64],
-            [['phone'], 'string', 'max' => 16],
+            [['phone'], 'string', 'max' => 32],
         ];
     }
 

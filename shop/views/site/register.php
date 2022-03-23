@@ -47,8 +47,8 @@ $this->title = 'Регистрация';
                       ] */
         ]]);
         ?>
-        <?= $form->field($model, 'email')->textInput(['autofocus' => true, 'placeholder' => 'Email', 'autocomplete' => 'off','type'=>'email']) ?>
-        <?= $form->field($model, 'pass')->passwordInput(['placeholder' => 'Пароль', 'autocomplete' => 'off',]) ?>
+        <?= $form->field($model, 'email')->textInput(['autofocus' => true, 'placeholder' => $model->getAttributeLabel('email'), 'autocomplete' => 'off','type'=>'email']) ?>
+        <?= $form->field($model, 'pass')->passwordInput(['placeholder' => $model->getAttributeLabel('pass'), 'autocomplete' => 'off',]) ?>
         <div class="form-row">
             <div class="col-6 m-0">
                 <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-danger', 'name' => 'login-button']) ?>

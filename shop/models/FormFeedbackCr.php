@@ -36,7 +36,7 @@ class FormFeedbackCr extends Model {
             //
             ['phone', 'required'],
             ['phone', 'isPhone'],
-            ['phone', 'string', 'min' => 5, 'max' => 16],
+            ['phone', 'string', 'min' => 5, 'max' => 32],
             ['phone', 'trim'],
             //
             ['email', 'required'],
@@ -55,7 +55,7 @@ class FormFeedbackCr extends Model {
     }
 
     public function isPhone($attribute) {
-        if (!preg_match('/^[0-9\-\+\(\)]+$/', $this->$attribute)) {
+        if (!preg_match('/^[0-9\-\+\(\)\s]+$/', $this->$attribute)) {
             $this->addError($attribute, 'Введите номер телефона.');
             return false;
         }

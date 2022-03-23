@@ -15,9 +15,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 //
 use app\models\User;
-use app\models\UserHelper;
-use app\models\FormLogin;
-use app\models\FormRegister;
+use app\models\UserHelper; 
 use yii\captcha\CaptchaAction;
 
 class SiteController extends Controller {
@@ -95,7 +93,7 @@ class SiteController extends Controller {
             return $this->goHome();
         }
 
-        $model = new FormRegister();
+        $model = new \app\models\FormRegister();
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->register()) {
             return $this->goHome();
         }
