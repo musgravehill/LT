@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
 
 # Install PHP extensions
 
-# Get latest Composer
+# Get latest Composer   src="--from=composer:latest /usr/bin/composer"  dest="/usr/bin/composer"
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set working directory
