@@ -21,7 +21,9 @@ services:
             - ./docker-conf/docker-entrypoint.sh:/var/www/lt/docker-entrypoint.sh         
         networks:
             - my-network    
-        entrypoint: /var/www/lt/docker-entrypoint.sh       
+        entrypoint: /var/www/lt/docker-entrypoint.sh  
+        #docker-entrypoint.sh ==> cd /var/www/lt && composer update  
+        #May be better: docker-compose exec service_php    composer install/update?
     
 
 networks:
