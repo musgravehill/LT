@@ -83,7 +83,8 @@ class FeedbackController extends Controller {
             return $this->redirect(Url::to(['feedback/cr',]));
         }
 
-        $items = \app\models\Feedback::find()->orderby(['id' => SORT_DESC])->limit(10)->all();
+        $items = \app\models\Feedback::find()->asArray()->orderby(['id' => SORT_DESC])->limit(10)->all();
+        
 
         return $this->render('cr', [
                     'model' => $model,
