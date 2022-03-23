@@ -21,8 +21,8 @@ $this->title = 'Обратная связь';
             <th></th>
         </tr>
         <?php foreach ($items as $item): ?>  
-            <tr>
-                <td>
+            <tr data-feedback-item data-id="<?= Html::encode($item['id']) ?>">
+                <td data-feedback-id data-id="<?= Html::encode($item['id']) ?>">
                     <?= Html::encode($item['id']) ?>
                 </td>                 
                 <td>
@@ -37,6 +37,9 @@ $this->title = 'Обратная связь';
                 <td>
                     <span data-feedback-save data-id="<?= Html::encode($item['id']) ?>" class="btn btn-outline-success btn-sm">
                         <span class="bi-save"></span>                         
+                    </span>
+                    <span data-feedback-save-res data-id="<?= Html::encode($item['id']) ?>">
+
                     </span>
                 </td>
                 <td>
@@ -107,14 +110,26 @@ $this->title = 'Обратная связь';
                 _csrf: csrfToken
             };
             postData(feedback_u_url, data)
-                    .then((data) => {
-                        console.log(data);
+                    .then((res) => {
+                        feedback_save_result(res);
                     });
         }
 
-
-
-
+        function feedback_save_result(res) {
+            const id = parseInt(res.id) || 0;
+            const isOk = parseInt(res.isOk) || 0;
+            const saveResSpan = document.querySelector("span[data-feedback-save-res][data-id='" + id + "']");
+            saveResSpan.classList.add("badge");
+            if (1 === isOk) {
+                saveResSpan.classList.add("bg-success");
+                saveResSpan.textContent = 'ok';
+                saveResSpan.classList.remove("bg-danger");
+            } else {
+                saveResSpan.classList.add("bg-danger");
+                saveResSpan.textContent = 'err';                
+                saveResSpan.classList.remove("bg-success");
+            }
+        }
 
         async function postData(url = '', data = {}) {
             const response = await fetch(url, {

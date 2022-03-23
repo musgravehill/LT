@@ -128,10 +128,20 @@ class FeedbackController extends Controller {
         if ($model->validate() && $model->u($item)) {
             //Yii::$app->session->addFlash('success', 'Ok!');
             //return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
-            return $this->asJson(1);
+            $res = [
+                'id' => $id,
+                'isOk' => 1,
+            ];
+            return $this->asJson($res);
         }
 
-        return $this->asJson(0);  //OR \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $res = [
+            'id' => $id,
+            'isOk' => 0,
+        ];
+        return $this->asJson($res);
+
+//OR \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
         /* return $this->render('u', [
           'model' => $model,
