@@ -16,7 +16,6 @@ $config = [
         '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
-       
         'assetManager' => [
             'class' => 'yii\web\AssetManager',
             'bundles' => [
@@ -63,6 +62,9 @@ $config = [
             'enableStrictParsing' => true,
             'rules' => [
                 '/' => 'site/index',
+                'login' => 'site/login',
+                'register' => 'site/register',
+                'logout' => 'site/logout',
                 'p/<id:\d+>.html' => 'product/view', //-<ufu:[0-9a-zA-Z\-]+>
                 'sp/<id:\d+>.html' => 'staticpage/view',
                 'chat/<item_type_id:\d+>/<item_id:\d+>' => 'chat/view',

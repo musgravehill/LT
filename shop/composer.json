@@ -20,20 +20,7 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "light/hashids": "2.0",        
         "yiisoft/yii2-imagine": "^2.1",
-        "yii2mod/yii2-star-rating": "*",
-        "neitanod/forceutf8": "~2.0",
-        "moonlandsoft/yii2-phpexcel": "*",
-        "kartik-v/yii2-mpdf": "dev-master",
-        "mpdf/mpdf": "*",
-        "himiklab/yii2-ipgeobase-component": "*",
-        "yiisoft/yii2-sphinx": "^2.0",
-        "unisender/api-wrapper": "^1.6",
-        "paulzi/yii2-nested-sets": "^1.0",                
-        "skeeks/yii2-assets-auto-compress": "*",
-        "vova07/yii2-imperavi-widget": "*",
-        "jeroendesloovere/vcard": "^1.7",
-        "prewk/xml-string-streamer": "^0.14.0",
-        "halaxa/json-machine": "^0.7.1"               
+        "yii2mod/yii2-star-rating": "*"                  
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
