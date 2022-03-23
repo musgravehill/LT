@@ -20,15 +20,23 @@ use yii\helpers\Url;
                 </li>                 
             </ul>            
             <div class="navbar-nav">
-                <div class="nav-item text-nowrap">
-                    <a class="nav-link px-3" href="<?= Url::to(['site/register']); ?>">Register</a>                    
-                </div>
-                <div class="nav-item text-nowrap">
-                    <a class="nav-link px-3" href="<?= Url::to(['site/login']); ?>">Login</a>                    
-                </div>
-                <div class="nav-item text-nowrap">
-                    <a class="nav-link px-3" href="<?= Url::to(['site/logout']); ?>">Logout</a>                    
-                </div>
+                <?php if (!Yii::$app->user->isGuest): ?>
+                    <div class="nav-item text-nowrap">
+                        <a class="nav-link px-3" href="<?= Url::to(['site/profile']); ?>">
+                            <?= Html::encode(Yii::$app->user->identity->userEntity->email) ?>
+                        </a>                    
+                    </div>
+                    <div class="nav-item text-nowrap">
+                        <a class="nav-link px-3" href="<?= Url::to(['site/logout']); ?>">Logout</a>                    
+                    </div>
+                <?php else: ?>
+                    <div class="nav-item text-nowrap">
+                        <a class="nav-link px-3" href="<?= Url::to(['site/register']); ?>">Register</a>                    
+                    </div>
+                    <div class="nav-item text-nowrap">
+                        <a class="nav-link px-3" href="<?= Url::to(['site/login']); ?>">Login</a>                    
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
