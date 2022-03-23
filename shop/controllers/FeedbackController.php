@@ -16,11 +16,11 @@ use yii\helpers\Html;
 //
 use app\models\User;
 use app\models\UserHelper;
- 
 use yii\captcha\CaptchaAction;
- 
+//
+use JeroenDesloovere\VCard\VCard;
 
-class UserController extends Controller {
+class FeedbackController extends Controller {
 
     use \app\components\ControllerTrait;
 
@@ -38,9 +38,14 @@ class UserController extends Controller {
                 ],
                 'rules' => [
                     [
-                        'actions' => ['profile'],
+                        'actions' => ['cr'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'actions' => ['u', 'd', 'list'],
+                        'allow' => true,
+                        'roles' => [UserHelper::ROLE_ADMIN],
                     ],
                 ],
             ],
@@ -71,13 +76,10 @@ class UserController extends Controller {
         ];
     }
 
-    public function actionProfile() {
-        $user = UserHelper::getUser(HelperY::userId());
-        if (!$user) {
-            throw new HttpException(404, 'Not found');
-        }
+    public function actionCr() {
 
-        return $this->render('profile', [
+
+        return $this->render('cr', [
                     'user' => $user,
         ]);
     }

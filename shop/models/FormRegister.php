@@ -33,9 +33,12 @@ class FormRegister extends Model {
         return [
             ['email', 'required'],
             ['email', 'email'],
+            ['email', 'string', 'min' => 3, 'max' => 32],
+            ['email', 'trim'],
             //
             ['pass', 'required'],
             ['pass', 'string', 'min' => 6, 'max' => 12],
+            ['pass', 'trim'],
         ];
     }
 
@@ -46,25 +49,24 @@ class FormRegister extends Model {
         ];
     }
 
-    public function isPhone($attribute) {
-        if (!preg_match('/^[0-9]{10}$/', $this->$attribute)) {
-            $this->addError($attribute, 'Нужен мобильный телефон.');
-            return false;
-        }
-        /* if (!preg_match('/^9[0-9]{9}$/', $this->$attribute)) {
-          $this->addError($attribute, 'Первая цифра должна быть "9".');
-          return false;
-          } */
-        return true;
-    }
+    /* public function isPhone($attribute) {
+      if (!preg_match('/^[0-9]{10}$/', $this->$attribute)) {
+      $this->addError($attribute, 'Нужен мобильный телефон.');
+      return false;
+      }
+      // if (!preg_match('/^9[0-9]{9}$/', $this->$attribute)) {
+      // $this->addError($attribute, 'Первая цифра должна быть "9".');
+      // return false;
+      // }
+      return true;
+      }
 
-    public function beforeValidate() {
-        if (!empty($this->phone)) {
-            $this->phone = HelperY::purify(str_replace('+7', '', $this->phone), '/[^\d]/Uui'); //10 digits without +7
-        }
+      public function beforeValidate() {
+      if (!empty($this->phone)) {
+      $this->phone = HelperY::purify(str_replace('+7', '', $this->phone), '/[^\d]/Uui'); //10 digits without +7
+      }
 
 
-        return parent::beforeValidate();
-    }
-
+      return parent::beforeValidate();
+      } */
 }
