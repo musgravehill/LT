@@ -49,7 +49,7 @@ $this->title = 'Регистрация';
         <?= $form->field($model, 'email')->textInput(['autofocus' => true, 'placeholder' => $model->getAttributeLabel('email'), 'autocomplete' => 'off', 'type' => 'email']) ?>
         <?= $form->field($model, 'pass')->passwordInput(['placeholder' => $model->getAttributeLabel('pass'), 'autocomplete' => 'off',]) ?>
         <div class="mb-3">   
-            <?= Html::submitButton('Войти', ['class' => 'btn btn-success', 'name' => 'login-button']) ?>
+            <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-success', 'name' => 'login-button']) ?>
         </div> 
         <?php ActiveForm::end(); ?>
     </div>

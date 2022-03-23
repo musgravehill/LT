@@ -41,16 +41,6 @@ class UserHelper {
         return User::find()->where(['id' => $id])->limit(1)->one();
     }
 
-    public static function getUserRoleName($roleId) {
-        switch ($roleId) {
-            case UserHelper::ROLE_ADMIN:
-                return 'ADMIN';
-            case UserHelper::ROLE_GENDIR:
-                return 'gendir';
-            case UserHelper::ROLE_MANAGER:
-                return 'user';
-        }
-        return '??????';
-    }
+    
 
 }

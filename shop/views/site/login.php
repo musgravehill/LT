@@ -53,7 +53,12 @@ $this->title = 'Вход';
         </div> 
         <?php ActiveForm::end(); ?>
     </div>
+    <div class="col-12">
+        <p class="text-secondary">
+            admin@lt.ru 
+            12345678
+        </p>
+    </div>
 </div>
 
-admin@lt.ru
-12345678
+

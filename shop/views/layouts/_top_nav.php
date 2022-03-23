@@ -22,10 +22,10 @@ use yii\helpers\Url;
             <div class="navbar-nav">
                 <?php if (!Yii::$app->user->isGuest): ?>
                     <div class="nav-item text-nowrap">
-                        <a class="nav-link px-3" href="<?= Url::to(['site/profile']); ?>">
+                        <a class="nav-link px-3" href="<?= Url::to(['feedback/list_adm']); ?>">
                             <?= Html::encode(Yii::$app->user->identity->userEntity->email) ?>
                         </a>                    
-                    </div>
+                    </div>                
                     <div class="nav-item text-nowrap">
                         <a class="nav-link px-3" href="<?= Url::to(['site/logout']); ?>">Logout</a>                    
                     </div>

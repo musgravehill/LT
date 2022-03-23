@@ -10,7 +10,7 @@ use app\components\HelperY;
         <div class="card-header">
             <?= Html::encode($item['username']) ?>
             <span class="text-secondary float-end">
-                <?= Html::encode($item['dt_create']) ?>
+                <span data-moment="DD-MM-YYYY HH:mm"><?= Html::encode($item['dt_create']) ?></span> 
             </span>
         </div>
         <div class="card-body p-1">            

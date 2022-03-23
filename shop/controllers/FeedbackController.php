@@ -43,7 +43,7 @@ class FeedbackController extends Controller {
                         'roles' => ['?', '@'],
                     ],
                     [
-                        'actions' => ['u', 'd', 'list'],
+                        'actions' => ['u', 'd', 'list_adm'],
                         'allow' => true,
                         'roles' => [UserHelper::ROLE_ADMIN],
                     ],
@@ -84,11 +84,31 @@ class FeedbackController extends Controller {
         }
 
         $items = \app\models\Feedback::find()->asArray()->orderby(['id' => SORT_DESC])->limit(10)->all();
-        
 
         return $this->render('cr', [
                     'model' => $model,
                     'items' => $items,
+        ]);
+    }
+
+    public function actionList_adm() {
+        $filters = [
+            'page' => (int) HelperY::getGet('page', 1),
+        ];
+        array_walk_recursive($filters, function (&$item) {
+            $item = HelperY::purify($item, '/[^\w\d\s\-]/Uui');
+        });
+        $filters['page'] = ($filters['page'] > 0) ? $filters['page'] : 1;
+
+        $urlParams = [];
+        $urlParams[0] = 'feedback/list_adm'; //for URL create
+        $urlParams['page'] = (int) $filters['page'];
+
+        $items = \app\models\FeedbackHelper::get($filters);
+        
+        return $this->render('list_adm', [
+                    'items' => $items,
+                    'urlParams' => $urlParams,
         ]);
     }
 
