@@ -105,11 +105,37 @@ class FeedbackController extends Controller {
         $urlParams['page'] = (int) $filters['page'];
 
         $items = \app\models\FeedbackHelper::get($filters);
-        
+
         return $this->render('list_adm', [
                     'items' => $items,
                     'urlParams' => $urlParams,
         ]);
+    }
+
+    public function actionU() {
+        $id = (int) HelperY::getPost('id', 0);
+
+        $item = \app\models\Feedback::find()->where(['id' => $id])->limit(1)->one();
+        if (!$item) {
+            throw new HttpException(404, 'Not found');
+        }
+
+        $model = new \app\models\FormFeedbackU();
+        $model->username = HelperY::getPost('username', 0);
+        $model->phone = HelperY::getPost('phone', 0);
+        $model->email = HelperY::getPost('email', 0);
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->u($item)) {
+            //Yii::$app->session->addFlash('success', 'Ok!');
+            //return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
+            return $this->asJson(1);
+        }
+
+        return $this->asJson(0);  //OR \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        /* return $this->render('u', [
+          'model' => $model,
+          ]); */
     }
 
 }
