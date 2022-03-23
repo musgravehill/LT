@@ -1,23 +1,23 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\FormLogin */
+/* @var $model app\models\FormRegister */
 
 use yii\helpers\Html;
-use app\components\HelperY;
 use yii\helpers\Url;
+use app\components\HelperY;
 //
 use yii\bootstrap\ActiveForm;
-use \app\models\User;
+use yii\captcha\Captcha;
 
 $this->title = 'Вход';
 ?>
 
 <div class="row">
-    <div class="col-sm-12 col-md-8">
+    <div class="col-12">
         <h1><?= Html::encode($this->title) ?></h1>
     </div>
-    <div class="col-sm-12 col-md-8">
+    <div class="col-12">
         <?php
         $form = ActiveForm::begin([
                     //'layout' => 'horizontal',
@@ -26,17 +26,16 @@ $this->title = 'Вход';
                     ],
                     'fieldConfig' => [
                         'template' => '
-                        <div class="form-row m-0">
-                            <div class="col-sm-12 m-0">
+                        <div class="mb-3">    
+                             
                                 <b>{label}</b>
-                            </div>
-                            <div class="col-sm-12 m-0">
+                             
                                 {input}
                                 {hint}
                                 <div class="text-danger">
                                     {error}
                                 </div>
-                            </div>  
+                             
                         </div>', //{beginWrapper} {endWrapper}
                     /* 'horizontalCssClasses' => [
                       'label' => 'col-sm-4',
@@ -46,51 +45,15 @@ $this->title = 'Вход';
                       'hint' => 'text-danger'
                       ] */
         ]]);
-        ?>        
-        <?=
-        $form->field($model, 'phone', [
-            'template' => '
-                        <div class="form-row m-0">
-                            <div class="col-sm-12 m-0">
-                                <b>{label}</b>
-                            </div>
-                            <div class="col-sm-12 m-0">
-                                <div class="input-group">
-                                     
-                                    {input}
-                                    {hint}
-                                </div>
-                                <div class="text-danger">
-                                        {error}
-                                </div>
-                            </div>
-                        </div>',
-        ])->textInput([
-            'placeholder' => 'Телефон',
-            'type' => 'text',
-            'imask' => 'phone',
-            'autocomplete' => 'off',
-        ]);
         ?>
-
-        <?= $form->field($model, 'pass')->passwordInput(['placeholder' => 'Пароль', 'type' => 'password','autocomplete' => 'off',]) ?>
-        <div class="form-row">            
-            <div class="col-6 m-0">
-                <?= Html::submitButton('Войти', ['class' => 'btn btn-danger', 'name' => 'login-button']) ?>
-            </div>
-            
-            <div class="col-6 m-0">
-                <a href="<?= Url::to(['/site/initsetpass']); ?>"  class="btn btn-outline-secondary float-right">забыли пароль?</a>
-            </div>             
-        </div>
-
-        <!--div class="form-row">
-            <div class="col-12">
-        <?= $form->errorSummary($model); ?>
-            </div>
-        </div-->
+        <?= $form->field($model, 'email')->textInput(['autofocus' => true, 'placeholder' => $model->getAttributeLabel('email'), 'autocomplete' => 'off', 'type' => 'email']) ?>
+        <?= $form->field($model, 'pass')->passwordInput(['placeholder' => $model->getAttributeLabel('pass'), 'autocomplete' => 'off',]) ?>
+        <div class="mb-3">   
+            <?= Html::submitButton('Войти', ['class' => 'btn btn-success', 'name' => 'login-button']) ?>
+        </div> 
         <?php ActiveForm::end(); ?>
-    </div>  
+    </div>
 </div>
 
-
+admin@lt.ru
+12345678

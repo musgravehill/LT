@@ -14,10 +14,10 @@ $this->title = 'Регистрация';
 ?>
 
 <div class="row">
-    <div class="col-sm-12 col-md-8">
+    <div class="col-12">
         <h1><?= Html::encode($this->title) ?></h1>
     </div>
-    <div class="col-sm-12 col-md-8">
+    <div class="col-12">
         <?php
         $form = ActiveForm::begin([
                     //'layout' => 'horizontal',
@@ -26,17 +26,16 @@ $this->title = 'Регистрация';
                     ],
                     'fieldConfig' => [
                         'template' => '
-                        <div class="form-row m-0">
-                            <div class="col-sm-12 m-0">
+                        <div class="mb-3">    
+                             
                                 <b>{label}</b>
-                            </div>
-                            <div class="col-sm-12 m-0">
+                             
                                 {input}
                                 {hint}
                                 <div class="text-danger">
                                     {error}
                                 </div>
-                            </div>
+                             
                         </div>', //{beginWrapper} {endWrapper}
                     /* 'horizontalCssClasses' => [
                       'label' => 'col-sm-4',
@@ -47,12 +46,10 @@ $this->title = 'Регистрация';
                       ] */
         ]]);
         ?>
-        <?= $form->field($model, 'email')->textInput(['autofocus' => true, 'placeholder' => $model->getAttributeLabel('email'), 'autocomplete' => 'off','type'=>'email']) ?>
+        <?= $form->field($model, 'email')->textInput(['autofocus' => true, 'placeholder' => $model->getAttributeLabel('email'), 'autocomplete' => 'off', 'type' => 'email']) ?>
         <?= $form->field($model, 'pass')->passwordInput(['placeholder' => $model->getAttributeLabel('pass'), 'autocomplete' => 'off',]) ?>
-        <div class="form-row">
-            <div class="col-6 m-0">
-                <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-danger', 'name' => 'login-button']) ?>
-            </div>            
+        <div class="mb-3">   
+            <?= Html::submitButton('Войти', ['class' => 'btn btn-success', 'name' => 'login-button']) ?>
         </div> 
         <?php ActiveForm::end(); ?>
     </div>

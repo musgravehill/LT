@@ -15,7 +15,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 //
 use app\models\User;
-use app\models\UserHelper; 
+use app\models\UserHelper;
 use yii\captcha\CaptchaAction;
 
 class SiteController extends Controller {
@@ -89,15 +89,21 @@ class SiteController extends Controller {
     }
 
     public function actionRegister() {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
         $model = new \app\models\FormRegister();
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->register()) {
             return $this->goHome();
         }
         return $this->render('register', [
+                    'model' => $model,
+        ]);
+    }
+
+    public function actionLogin() {
+        $model = new \app\models\FormLogin();
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->login()) {
+            return $this->goHome();
+        }
+        return $this->render('login', [
                     'model' => $model,
         ]);
     }

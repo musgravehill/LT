@@ -15,21 +15,13 @@ class UserHelper {
     const ROLE_ADMIN = 30;
     const COUNT_ON_PAGE = 10;
 
-    public static function getEmail($id) {
-        $u = User::find()->where(['id' => $id])->limit(1)->one();
-        return ($u) ? $u->email : false;
-    }
-
     public static function findByEmail($email) {
-        $email = \app\components\HelperY::purify($email, '/[^\w\d\.-_@]/Uui');
+        $email = \app\components\HelperY::purify($email, '/[^\w\d@\-_\.]/Uui');
         return User::find()->where(['email' => $email])->limit(1)->one();
     }
 
-    public function validatePassword($pass_input) {
-        $password = $pass_input;
-        $hash = $this->pass;
-
-        if (!is_string($password) || $password === '') {
+    public static function validatePassword($pass_input, $hash) {
+        if (!is_string($pass_input) || $pass_input === '') {
             return false;
         }
 
@@ -37,7 +29,7 @@ class UserHelper {
             return false;
         }
 
-        return Yii::$app->getSecurity()->validatePassword($password, $hash);
+        return Yii::$app->getSecurity()->validatePassword($pass_input, $hash);
     }
 
     public static function generatePasswordHash($password) {

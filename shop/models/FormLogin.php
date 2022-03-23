@@ -8,22 +8,28 @@ use app\models\User;
 use app\components\HelperY;
 use yii\helpers\Url;
 
-class FormRegister extends Model {
+class FormLogin extends Model {
 
     public $pass;
     public $email;
 
-    public function register() {
-        $user = new User;
-        $user->email = HelperY::purify($this->email, '/[^\w\d@\-_\.]/Uui');
-        $user->pass = UserHelper::generatePasswordHash($this->pass);
-        $user->role = UserHelper::ROLE_ADMIN;
-        if ($user->save()) {
+    public function login() {
+        $user = UserHelper::findByEmail($this->email);
+        if (!$user) {
+            $this->addError('pass', 'Неправильные данные.');
+            return false;
+        }
+        $isValid = UserHelper::validatePassword($this->pass, $user['pass']);
+
+        if ($isValid) {
             $UserEntity = new \app\components\UserEntity($user);
             $UserIdentity = new \app\components\UserIdentity($user['id'], $UserEntity);
             Yii::$app->user->login($UserIdentity, HelperY::params('lifetimeLogin'));
             //Yii::$app->user->login($user, HelperY::params('lifetimeLogin'));
             return true;
+        } else {
+            $this->addError('pass', 'Неправильные данные.');
+            return false;
         }
 
         return false;
