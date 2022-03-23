@@ -175,7 +175,5 @@ $this->title = 'Обратная связь';
             return await response.json(); // parses JSON response into native JavaScript objects
         }
     }
-
-
 </script>
 
