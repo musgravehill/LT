@@ -125,7 +125,7 @@ class FeedbackController extends Controller {
         $model->phone = HelperY::getPost('phone', 0);
         $model->email = HelperY::getPost('email', 0);
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->u($item)) {
+        if ($model->validate() && $model->u($item)) {
             //Yii::$app->session->addFlash('success', 'Ok!');
             //return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
             return $this->asJson(1);

@@ -91,9 +91,30 @@ $this->title = 'Обратная связь';
         for (btn of btnsSave) {
             btn.addEventListener('click', (e) => {
                 const id = parseInt(e.currentTarget.dataset.id) || 0;
-                console.log(id);
+                feedback_save(id);
             });
         }
+
+        function feedback_save(id) {
+            const username = document.querySelector("input[data-feedback-username][data-id='" + id + "']").value;
+            const email = document.querySelector("input[data-feedback-email][data-id='" + id + "']").value;
+            const phone = document.querySelector("input[data-feedback-phone][data-id='" + id + "']").value;
+            const data = {
+                id: id,
+                username: username,
+                email: email,
+                phone: phone,
+                _csrf: csrfToken
+            };
+            postData(feedback_u_url, data)
+                    .then((data) => {
+                        console.log(data);
+                    });
+        }
+
+
+
+
 
         async function postData(url = '', data = {}) {
             const response = await fetch(url, {
@@ -113,9 +134,6 @@ $this->title = 'Обратная связь';
         }
     }
 
-    postData(feedback_u_url, {id: 3, _csrf: csrfToken})
-            .then((data) => {
-                console.log(data);
-            });
+
 </script>
 
