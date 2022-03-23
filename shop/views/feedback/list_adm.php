@@ -35,7 +35,7 @@ $this->title = 'Обратная связь';
                     <input data-feedback-phone data-id="<?= Html::encode($item['id']) ?>" type="text" value="<?= Html::encode($item['phone']) ?>" class="form-control"> 
                 </td>
                 <td>
-                    <span data-feedback-save data-id="<?= Html::encode($item['id']) ?>" class="btn btn-outline-success btn-sm">
+                    <span data-feedback-save data-id="<?= Html::encode($item['id']) ?>" class="btn btn-outline-success btn-sm" title="Сохранить">
                         <span class="bi-save"></span>                         
                     </span>
                     <span data-feedback-save-res data-id="<?= Html::encode($item['id']) ?>">
@@ -45,11 +45,10 @@ $this->title = 'Обратная связь';
                 <td>
                     <span data-moment="DD-MM-YYYY HH:mm"><?= Html::encode($item['dt_create']) ?></span>                    
                 </td>
-
                 <td>
-                    <a href="" class="text-secondary">
-                        <span class="bi-x-circle"></span>
-                    </a>
+                    <span data-feedback-delete data-id="<?= Html::encode($item['id']) ?>" class="btn btn-outline-secondary btn-sm" title="Удалить">
+                        <span class="bi-x-circle"></span>                     
+                    </span>                    
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -79,8 +78,6 @@ $this->title = 'Обратная связь';
 
 
 <script>
-
-
     document.addEventListener('DOMContentLoaded', function () {
         feedback_actions();
     });
@@ -126,8 +123,38 @@ $this->title = 'Обратная связь';
                 saveResSpan.classList.remove("bg-danger");
             } else {
                 saveResSpan.classList.add("bg-danger");
-                saveResSpan.textContent = 'err';                
+                saveResSpan.textContent = 'err';
                 saveResSpan.classList.remove("bg-success");
+            }
+        }
+
+        const btnsDelete = Array.from(document.querySelectorAll('span[data-feedback-delete]'));
+        for (btn of btnsDelete) {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(e.currentTarget.dataset.id) || 0;
+                feedback_delete(id);
+            });
+        }
+
+        function feedback_delete(id) {
+            const data = {
+                id: id,
+                _csrf: csrfToken
+            };
+            postData(feedback_d_url, data)
+                    .then((res) => {
+                        feedback_delete_result(res);
+                    });
+        }
+
+        function feedback_delete_result(res) {
+            const id = parseInt(res.id) || 0;
+            const isOk = parseInt(res.isOk) || 0;
+            const tr = document.querySelector("tr[data-feedback-item][data-id='" + id + "']");
+            if (1 === isOk) {
+                tr.classList.add("opacity-25");
+            } else {
+
             }
         }
 

@@ -141,8 +141,37 @@ class FeedbackController extends Controller {
         ];
         return $this->asJson($res);
 
-//OR \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        //OR \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        /* return $this->render('u', [
+          'model' => $model,
+          ]); */
+    }
 
+    public function actionD() {
+        $id = (int) HelperY::getPost('id', 0);
+
+        $item = \app\models\Feedback::find()->where(['id' => $id])->limit(1)->one();
+        if (!$item) {
+            throw new HttpException(404, 'Not found');
+        }
+
+        if ($item->delete()) {
+            //Yii::$app->session->addFlash('success', 'Ok!');
+            //return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
+            $res = [
+                'id' => $id,
+                'isOk' => 1,
+            ];
+            return $this->asJson($res);
+        }
+
+        $res = [
+            'id' => $id,
+            'isOk' => 0,
+        ];
+        return $this->asJson($res);
+
+        //OR \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         /* return $this->render('u', [
           'model' => $model,
           ]); */
