@@ -1,0 +1,82 @@
+{
+    "name": "yiisoft/yii2-app-basic",
+    "description": "Yii 2 Basic Project Template",
+    "keywords": ["yii2", "framework", "basic", "project template"],
+    "homepage": "http://www.yiiframework.com/",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
+        "forum": "http://www.yiiframework.com/forum/",
+        "wiki": "http://www.yiiframework.com/wiki/",
+        "irc": "irc://irc.freenode.net/yii",
+        "source": "https://github.com/yiisoft/yii2"
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "~2.0.5",
+        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-swiftmailer": "~2.0.0",
+        "light/hashids": "2.0",        
+        "yiisoft/yii2-imagine": "^2.1",
+        "yii2mod/yii2-star-rating": "*",
+        "neitanod/forceutf8": "~2.0",
+        "moonlandsoft/yii2-phpexcel": "*",
+        "kartik-v/yii2-mpdf": "dev-master",
+        "mpdf/mpdf": "*",
+        "himiklab/yii2-ipgeobase-component": "*",
+        "yiisoft/yii2-sphinx": "^2.0",
+        "unisender/api-wrapper": "^1.6",
+        "paulzi/yii2-nested-sets": "^1.0",                
+        "skeeks/yii2-assets-auto-compress": "*",
+        "vova07/yii2-imperavi-widget": "*",
+        "jeroendesloovere/vcard": "^1.7",
+        "prewk/xml-string-streamer": "^0.14.0",
+        "halaxa/json-machine": "^0.7.1"               
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "~2.0.0",
+        "yiisoft/yii2-gii": "~2.0.0",
+        "yiisoft/yii2-faker": "~2.0.0",
+
+        "codeception/base": "^2.2.3",
+        "codeception/verify": "~0.3.1",
+        "codeception/specify": "~0.4.3"
+    },
+    "config": {
+        "process-timeout": 1800,
+        "disable-tls": true, 
+        "secure-http": false    
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject"
+        ]
+    },
+    "extra": {
+        "yii\\composer\\Installer::postCreateProject": {
+            "setPermission": [
+                {
+                    "runtime": "0777",
+                    "web/assets": "0777",
+                    "yii": "0755"
+                }
+            ],
+            "generateCookieValidationKey": [
+                "config/web.php"
+            ]
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org",
+			"options": {
+				"ssl": {
+				  "verify_peer": false
+				}
+			  }			
+        }
+    ]
+}
