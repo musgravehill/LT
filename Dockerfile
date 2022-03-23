@@ -6,7 +6,7 @@ ARG arg_uid=1000
 ARG arg_gid=1000
 
 # ENV always available
-ENV env_app_workdir = /var/wwww
+ENV env_app_workdir = /var/www
 
 RUN useradd -G www-data,root -u $arg_uid -d /home/$arg_user $arg_user
 RUN mkdir -p /home/$arg_user/ && \
