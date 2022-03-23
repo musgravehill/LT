@@ -18,6 +18,7 @@ $this->title = 'Обратная связь';
             <th>Телефон</th>
             <th>Создано</th>
             <th></th>
+            <th></th>
         </tr>
         <?php foreach ($items as $item): ?>  
             <tr>
@@ -28,7 +29,16 @@ $this->title = 'Обратная связь';
                 <td>
                     <span data-moment="DD-MM-YYYY HH:mm"><?= Html::encode($item['dt_create']) ?></span>                    
                 </td>
-                <td></td>
+                <td>
+                    <a href="" class="text-secondary">
+                        <span class="bi-pencil"></span>                         
+                    </a>
+                </td>
+                <td>
+                    <a href="" class="text-secondary">
+                        <span class="bi-x-circle"></span>
+                    </a>
+                </td>
             </tr>
         <?php endforeach; ?>
     </table>

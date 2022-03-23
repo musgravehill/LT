@@ -23,7 +23,8 @@ AppAsset::register($this);
         <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
 
         <meta name="theme-color" content="#7952b3">
-        <title><?= Html::encode($this->title) ?></title>
+        <title><?= Html::encode($this->title) ?></title>         
+        
         <?php $this->head() ?>
     </head>
 

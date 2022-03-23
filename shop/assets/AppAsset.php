@@ -9,7 +9,8 @@ class AppAsset extends AssetBundle {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'bootstrap/css/bootstrap.min.css',
+        'bootstrap-icons/bootstrap-icons.css',
+        'bootstrap/css/bootstrap.min.css',        
         'css/site.css',
     ];
     public $js = [
@@ -29,7 +30,7 @@ class AppAsset extends AssetBundle {
         'defer' => true,
     ];
     public $cssOptions = [
-        'async' => 'async',
+        //'async' => 'async',
             //'position' => \yii\web\View::POS_END
     ];
 
