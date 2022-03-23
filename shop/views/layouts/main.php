@@ -31,7 +31,7 @@ AppAsset::register($this);
         <?php $this->beginBody() ?>
         <?= $this->render('_top_nav') ?>        
         <main class="container">
-            <div class="bg-light p-5 rounded">
+            <div class="bg-light p-5">
                 <div class="row">
                     <?php foreach (Yii::$app->session->getAllFlashes() as $key => $messages) : ?>
                         <?php foreach ($messages as $message) : ?>
@@ -44,9 +44,9 @@ AppAsset::register($this);
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                    <?php endforeach; ?>
-                    <?= $content ?>
+                    <?php endforeach; ?>                    
                 </div>
+                <?= $content ?>
             </div>
         </main>
         <?php $this->endBody() ?>
