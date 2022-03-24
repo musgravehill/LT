@@ -13,12 +13,21 @@ RUN mkdir -p /home/$arg_user/ && \
     chown -R $arg_user:$arg_user /home/$arg_user 
 
 # Install system dependencies   -y=autoYES
-RUN apt-get update && apt-get install -y \    
-    curl \   
-    zip \
-    unzip
-
-# Install PHP extensions
+RUN apt-get update && apt-get install -y \
+        curl \
+        wget \
+        git \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+	libpng-dev \
+	libonig-dev \
+	libzip-dev \
+	libmcrypt-dev \
+        && pecl install mcrypt-1.0.3 \
+	&& docker-php-ext-enable mcrypt \
+        && docker-php-ext-install -j$(nproc) iconv mbstring mysqli pdo_mysql zip \
+	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
+        && docker-php-ext-install -j$(nproc) gd 
 
 # Get latest Composer   src="--from=composer:latest /usr/bin/composer"  dest="/usr/bin/composer"
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
