@@ -2,7 +2,7 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=lt',
+    'dsn' => 'mysql:host=lt_mariadb;dbname=lt',  //lt_mariadb = docker service name
     'username' => 'lt',
     'password' => '1XfY1u9*2W-VSxHE',
     'charset' => 'utf8',

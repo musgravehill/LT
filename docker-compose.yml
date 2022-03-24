@@ -36,6 +36,7 @@ services:
             - my-network
         restart: always
         environment:
+            MARIADB_ROOT_HOST: localhost
             MARIADB_ROOT_PASSWORD: 0000
             MARIADB_USER: lt
             MARIADB_PASSWORD: 1XfY1u9*2W-VSxHE    

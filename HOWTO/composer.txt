@@ -1,0 +1,7 @@
+You can use 
+
+composer self-update --2 
+
+to migrate to it. Should you encounter issues, you can go back at any time by using 
+
+composer self-update --1 
