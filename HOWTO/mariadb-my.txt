@@ -1,0 +1,33 @@
+
+
+
+
+
+====MARIADB IMPORT DUMP.SQL==============================================================================
+docker exec -i lt_mariadb sh -c 'exec mysql -ult -p1XfY1u9*2W-VSxHE lt' < /home/bob/DEV/www/LT/lt.sql
+docker exec -i service_mariadb_name sh -c 'exec mysql -uSOMEUSER -pSOMEPASS DBNAME' < /home/bob/DEV/www/LT/lt.sql
+
+
+
+lt_mariadb: # configDB.php host=lt_mariadb, NOT localhost!
+        container_name: lt_mariadb
+        image: mariadb
+        networks:
+            - my-network
+        restart: always
+        environment:
+            MARIADB_ROOT_HOST: localhost
+            MARIADB_ROOT_PASSWORD: 0000
+            MARIADB_USER: lt
+            MARIADB_PASSWORD: 1XfY1u9*2W-VSxHE    
+            MARIADB_DATABASE: lt          
+        volumes:
+            - volume_lt_mariadb:/var/lib/mysql   #named volume - persistent, does not disappear after docker-compose down
+        ports:
+            - "3306:3306"    
+networks:
+    my-network:
+        driver: bridge
+
+volumes:
+    volume_lt_mariadb:            

@@ -11,9 +11,7 @@ docker system prune -a
 > id   #return get UID GID 
 
 
-====MARIADB IMPORT DUMP.SQL==============================================================================
-docker exec -i lt_mariadb sh -c 'exec mysql -ult -p1XfY1u9*2W-VSxHE lt' < /home/bob/DEV/www/LT/lt.sql
-docker exec -i service_mariadb_name sh -c 'exec mysql -uSOMEUSER -pSOMEPASS DBNAME' < /home/bob/DEV/www/LT/lt.sql
+
 
 
 

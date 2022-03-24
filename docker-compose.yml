@@ -29,7 +29,7 @@ services:
         entrypoint: /var/www/lt/docker-entrypoint.sh
         #docker-entrypoint.sh ==> cd /var/www/lt && composer update  
         #May be better: docker-compose exec lt_php    composer install/update?
-    lt_mariadb:
+    lt_mariadb: # configDB.php host=lt_mariadb, NOT localhost!
         container_name: lt_mariadb
         image: mariadb
         networks:
@@ -42,7 +42,7 @@ services:
             MARIADB_PASSWORD: 1XfY1u9*2W-VSxHE    
             MARIADB_DATABASE: lt          
         volumes:
-            - volume_lt_mariadb:/var/lib/mysql
+            - volume_lt_mariadb:/var/lib/mysql #named volume - persistent, does not disappear after docker-compose down
         ports:
             - "3306:3306"     
 
@@ -51,4 +51,4 @@ networks:
         driver: bridge
 
 volumes:
-    volume_lt_mariadb:
+    volume_lt_mariadb: #named volume - persistent, does not disappear after docker-compose down
